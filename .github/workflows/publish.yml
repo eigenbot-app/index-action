@@ -20,5 +20,4 @@ jobs:
 
       - name: Set VERSION from tag
         run: |
-          VERSION=${{github.head_ref}}
-          echo "VERSION=${VERSION##*/}" >> $GITHUB_ENV
+          echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
