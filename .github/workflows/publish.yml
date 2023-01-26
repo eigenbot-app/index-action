@@ -17,3 +17,8 @@ jobs:
           repository: ${{ github.repository }}
           permissions: >-
             {"contents": "write"}
+
+      - name: Set VERSION from tag
+        run: |
+          VERSION=${{github.head_ref}}
+          echo "VERSION=${VERSION##*/}" >> $GITHUB_ENV
