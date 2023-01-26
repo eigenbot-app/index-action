@@ -1,0 +1,18 @@
+name: Index Action for Eigenbot
+description: TODO
+branding:
+  icon: package
+  color: gray-dark
+inputs:
+  secret:
+    description: Eigenbot Account Secret
+    required: true
+  dir:
+    description: Private Actions Directory
+    default: ./
+  github_token:
+    description: The GitHub token to use when making API requests.
+    required: false
+runs:
+  using: node16
+  main: ./dist/main.js
