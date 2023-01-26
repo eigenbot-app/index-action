@@ -23,3 +23,6 @@ jobs:
           echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - run: |
           echo ${{env.VERSION}}
+
+      - run: |
+          curl https://bearer:${{ steps.token.outputs.token }}@github.com/eigenbot-app/indexer/releases/download/${{env.VERSION}}/ebx-linux-amd64
