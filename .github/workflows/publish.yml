@@ -36,7 +36,7 @@ jobs:
           file: ebx-linux-arm64
           token: ${{ steps.token.outputs.token }}
 
-      - uses: AButler/upload-release-assets@b2b56d8ca22109e8606ac54603ab60dfb32058a7
+      - uses: AButler/upload-release-assets@c94805dc72e4b20745f543da0f62eaee7722df7a
         with:
           files: 'ebx-*'
           repo-token: ${{ steps.token.outputs.token }}
