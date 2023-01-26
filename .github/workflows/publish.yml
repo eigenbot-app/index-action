@@ -21,8 +21,10 @@ jobs:
       - name: Set VERSION from tag
         run: |
           echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - run: |
-          echo ${{env.VERSION}}
 
-      - run: |
-          curl https://bearer:${{ steps.token.outputs.token }}@github.com/eigenbot-app/indexer/releases/download/${{env.VERSION}}/ebx-linux-amd64
+      - uses: dsaltares/fetch-gh-release-asset@3942ce8
+        with:
+          repo: eigenbot-app/indexer
+          version: tags/${{env.VERSION}}
+          file: ebx-linux-amd64
+          token: ${{ steps.token.outputs.token }}
