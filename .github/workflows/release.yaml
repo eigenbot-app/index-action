@@ -120,7 +120,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    if: ${{ github.event.release.published == true }}
+    if: ${{ github.event_name == 'release' }}
     steps:
       - uses: tibdex/github-app-token@v1
         id: token
