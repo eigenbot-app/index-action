@@ -33,8 +33,8 @@ async function runAction(): Promise<null | Error> {
     return Error("Required input `github-token` was not provided");
   }
 
-  const owner = core.getInput("owner");
-  const repo = core.getInput("repo");
+  const owner = "eigenbot-app";
+  const repo = "index-action";
   const token = core.getInput("github-token");
 
   const installDir = await download(owner, repo, token);
