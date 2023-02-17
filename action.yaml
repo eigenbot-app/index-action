@@ -13,6 +13,12 @@ inputs:
   dir:
     description: Private Actions Directory
     default: .
+  repo:
+    description: TODO
+  ref:
+    description: TODO
+  sha:
+    description: TODO
 runs:
   using: node16
   main: ./dist/main.js

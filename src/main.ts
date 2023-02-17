@@ -33,11 +33,13 @@ async function runAction(): Promise<null | Error> {
     return Error("Required input `github-token` was not provided");
   }
 
-  const owner = "eigenbot-app";
-  const repo = "index-action";
+  const key = core.getInput("access-key");
   const token = core.getInput("github-token");
+  const repo = core.getInput("repo");
+  const ref = core.getInput("ref");
+  const sha = core.getInput("sha");
 
-  const installDir = await download(owner, repo, token);
+  const installDir = await download("eigenbot-app", "index-action", token);
   if (installDir instanceof Error) {
     return installDir;
   }
@@ -56,7 +58,13 @@ async function runAction(): Promise<null | Error> {
   }
 
   core.info(`Successfully setup.`);
-  core.info(cp.execSync(`${binaryPath}`).toString());
+  core.info(
+    cp
+      .execSync(
+        `${binaryPath} -repo ${repo} -ref ${ref} -sha ${sha} -access-key ${key}`
+      )
+      .toString()
+  );
 
   return null;
 }
