@@ -15,19 +15,19 @@ async function run(): Promise<void> {
 }
 
 async function runIndex(): Promise<null | Error> {
-  const secret = core.getInput("secret");
+  const secret = core.getInput("access-key");
   if (secret === "") {
-    return Error("input `secret` was not provided");
+    return Error("input `access-key` was not provided");
+  }
+
+  const token = core.getInput("github-token");
+  if (token === "") {
+    core.warning("input `github-token` unset, GitHub may throttle you");
   }
 
   const dir = core.getInput("dir");
   if (dir === "") {
     return Error("input `dir` was not provided");
-  }
-
-  const token = core.getInput("github_token");
-  if (token === "") {
-    core.warning("input `github_token` unset, GitHub may throttle you");
   }
 
   return null;

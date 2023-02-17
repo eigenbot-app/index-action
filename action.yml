@@ -4,15 +4,15 @@ branding:
   icon: package
   color: gray-dark
 inputs:
-  secret:
-    description: Eigenbot Account Secret
+  access-key:
+    description: Eigenbot Access Key
     required: true
+  github-token:
+    description: GitHub Access Token
+    required: false
   dir:
     description: Private Actions Directory
-    default: ./
-  github_token:
-    description: The GitHub token to use when making API requests.
-    required: false
+    default: .
 runs:
   using: node16
   main: ./dist/main.js
