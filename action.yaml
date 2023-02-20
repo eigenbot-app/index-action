@@ -28,7 +28,6 @@ runs:
     - run: |
         ${{ github.action_path }}/bin/index \
           -access-key "${{ inputs.access-key }}" \
-          -github-token "${{ inputs.github-token }}" \
           -dir "${{ inputs.dir }}" \
           -repo "${{ inputs.repo }}" \
           -ref "${{ inputs.ref }}" \
