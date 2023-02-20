@@ -28,10 +28,11 @@ runs:
     - run: |
         ${{ github.action_path }}/bin/index \
           -access-key "${{ inputs.access-key }}" \
+          -root "${{ github.workspace }}" \
           -dir "${{ inputs.dir }}" \
           -repo "${{ inputs.repo }}" \
           -ref "${{ inputs.ref }}" \
-          -sha "${{ inputs.sha }}" \
+          -sha "${{ inputs.sha }}"
       shell: bash
       env:
         VERSION: ${{ inputs.version }}
