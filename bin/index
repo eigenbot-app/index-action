@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -e
+
+VERSION=${VERSION:-"latest"}
+
+if ! command -v gh &>/dev/null; then
+  echo "::error::Expected GitHub CLI \`gh\` in PATH."
+  exit 1
+fi
+
+echo "Downloading Eigenbot Indexer version \`${VERSION}\`..."
+gh release download \
+  --repo eigenbot-app/index-action \
+  --pattern "eigenbot-index-linux-amd64" \
+  --dir .
+
+chmod +x ./eigenbot-index-linux-amd64
+sudo mv ./eigenbot-index-linux-amd64 /usr/bin/index
+
+if command -v index &>/dev/null; then
+  version=$(index -version)
+  echo "::notice::Installed Eigenbot Indexer version \`${version}\` ($(which index))."
+else
+  echo "::error::Failed to install Eigenbot Indexer version \`${version}\`."
+  exit 1
+fi
+
+index "$@"

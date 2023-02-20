@@ -4,6 +4,9 @@ branding:
   icon: package
   color: gray-dark
 inputs:
+  version:
+    description: TODO
+    default: latest
   access-key:
     description: Eigenbot Access Key
     required: true
@@ -20,5 +23,17 @@ inputs:
   sha:
     description: TODO
 runs:
-  using: node16
-  main: ./dist/main.js
+  using: composite
+  steps:
+    - run: |
+        ${{ github.action_path }}/bin/index \
+          -access-key "${{ inputs.access-key }}" \
+          -github-token "${{ inputs.github-token }}" \
+          -dir "${{ inputs.dir }}" \
+          -repo "${{ inputs.repo }}" \
+          -ref "${{ inputs.ref }}" \
+          -sha "${{ inputs.sha }}" \
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+        GH_TOKEN: ${{ inputs.github-token }}
