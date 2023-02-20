@@ -19,7 +19,7 @@ sudo mv ./eigenbot-index-linux-amd64 /usr/bin/index
 
 if command -v index &>/dev/null; then
   version=$(index -version)
-  echo "::notice::Installed Eigenbot Indexer version \`${version}\` ($(which index))."
+  echo "Installed Eigenbot Indexer version \`${version}\` ($(which index))."
 else
   echo "::error::Failed to install Eigenbot Indexer version \`${version}\`."
   exit 1
