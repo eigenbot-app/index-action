@@ -10,6 +10,9 @@ inputs:
   access-key:
     description: Eigenbot Access Key
     required: true
+  github-token:
+    description: GitHub Access Token
+    required: false
   dir:
     description: Private Actions Directory
     default: .
