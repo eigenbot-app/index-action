@@ -10,9 +10,6 @@ inputs:
   access-key:
     description: Eigenbot Access Key
     required: true
-  github-token:
-    description: GitHub Access Token
-    required: false
   dir:
     description: Private Actions Directory
     default: .
@@ -22,10 +19,15 @@ inputs:
     description: TODO
   sha:
     description: TODO
+outputs:
+  manifest-id:
+    value: ${{ steps.index.outputs.manifest-id }}
+    description: TODO
 runs:
   using: composite
   steps:
-    - run: |
+    - id: index
+      run: |
         ${{ github.action_path }}/bin/index \
           -access-key "${{ inputs.access-key }}" \
           -root "${{ github.workspace }}" \
